@@ -1,24 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MuU-bw-8Wo">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BreeSerif-Regular.ttf">
+            <string>BreeSerif-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--All Movies Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AllMoviesController" id="BYZ-38-t0r" customClass="AllMoviesController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movies" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlH-yl-Odz">
+                                <rect key="frame" x="20" y="108" width="63" height="27.5"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cQK-O6-AxB">
+                                <rect key="frame" x="20" y="155.5" width="374" height="686.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cQK-O6-AxB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Eec-b4-Lgp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cQK-O6-AxB" secondAttribute="bottom" constant="20" id="Kc8-ND-H5u"/>
+                            <constraint firstItem="cQK-O6-AxB" firstAttribute="top" secondItem="VlH-yl-Odz" secondAttribute="bottom" constant="20" id="Phg-Dz-xpR"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cQK-O6-AxB" secondAttribute="trailing" constant="20" id="b2O-qI-qkL"/>
+                            <constraint firstItem="VlH-yl-Odz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gj1-VO-cmt"/>
+                            <constraint firstItem="VlH-yl-Odz" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="iIW-4U-qtf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="bNG-7x-oZa">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.left.2.fill" catalog="system" id="Ilo-Cd-UzW">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.grid.3x2.fill" catalog="system" id="8t3-Nq-S8s">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="rMD-V9-pIk" kind="show" id="c8l-Al-8rC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="moviesTableView" destination="cQK-O6-AxB" id="j86-cG-7ra"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="99.776785714285708"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1GF-Mx-6dv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MuU-bw-8Wo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fP2-OT-26a">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Gvo-Yt-74T"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f1V-IG-6Bx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="99.776785714285708"/>
+        </scene>
+        <!--Favourite Controller-->
+        <scene sceneID="E1A-sX-aTZ">
+            <objects>
+                <viewController storyboardIdentifier="FavouriteController" id="rMD-V9-pIk" customClass="FavouriteController" customModule="NewMovies" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AMn-j5-L2n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyFavourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLi-zp-sLl">
+                                <rect key="frame" x="20" y="108" width="124" height="27.5"/>
+                                <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7NJ-Vz-BJs">
+                                <rect key="frame" x="20" y="155.5" width="374" height="686.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="55u-ns-tPj" firstAttribute="bottom" secondItem="7NJ-Vz-BJs" secondAttribute="bottom" constant="20" id="5yl-dR-4wZ"/>
+                            <constraint firstItem="55u-ns-tPj" firstAttribute="trailing" secondItem="7NJ-Vz-BJs" secondAttribute="trailing" constant="20" id="6AE-kO-1eY"/>
+                            <constraint firstItem="JLi-zp-sLl" firstAttribute="top" secondItem="55u-ns-tPj" secondAttribute="top" constant="20" id="JKq-hf-h4B"/>
+                            <constraint firstItem="7NJ-Vz-BJs" firstAttribute="top" secondItem="JLi-zp-sLl" secondAttribute="bottom" constant="20" id="Mhb-kD-3zA"/>
+                            <constraint firstItem="7NJ-Vz-BJs" firstAttribute="leading" secondItem="55u-ns-tPj" secondAttribute="leading" constant="20" id="Z9w-B7-Sdz"/>
+                            <constraint firstItem="JLi-zp-sLl" firstAttribute="leading" secondItem="55u-ns-tPj" secondAttribute="leading" constant="20" id="eZt-UP-zY3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="55u-ns-tPj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="hKy-uX-btg">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.left.2.fill" catalog="system" id="Ull-cD-jql">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.grid.3x2.fill" catalog="system" id="nIv-pf-iI2">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="moviesTableView" destination="7NJ-Vz-BJs" id="6Yw-mU-5SC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iC2-uh-t4K" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1928.985507246377" y="99.776785714285708"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="64" height="42"/>
+        <image name="square.grid.3x2.fill" catalog="system" width="64" height="40"/>
+    </resources>
 </document>

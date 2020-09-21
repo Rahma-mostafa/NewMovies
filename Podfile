@@ -9,8 +9,6 @@ target 'NewMovies' do
 	pod 'SDWebImage'
 	pod 'Alamofire'
 	pod "KRProgressHUD"
-
-
-
+	pod 'Cosmos'
 
 end
