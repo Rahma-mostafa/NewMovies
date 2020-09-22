@@ -50,5 +50,6 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
+    
 }
 

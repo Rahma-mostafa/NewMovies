@@ -12,6 +12,8 @@
 		52604A602518045500A56C00 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52604A5F2518045500A56C00 /* Movie.swift */; };
 		52604A6225180A7100A56C00 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52604A6125180A7100A56C00 /* GradientView.swift */; };
 		52604A6425182A0700A56C00 /* FavouriteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52604A6325182A0700A56C00 /* FavouriteController.swift */; };
+		52604A662518341C00A56C00 /* Details.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52604A652518341C00A56C00 /* Details.storyboard */; };
+		52604A68251834EE00A56C00 /* DetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52604A67251834EE00A56C00 /* DetailsController.swift */; };
 		52A97F162516DF44001A853A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A97F152516DF44001A853A /* AppDelegate.swift */; };
 		52A97F182516DF44001A853A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A97F172516DF44001A853A /* SceneDelegate.swift */; };
 		52A97F1A2516DF44001A853A /* AllMoviesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A97F192516DF44001A853A /* AllMoviesController.swift */; };
@@ -28,6 +30,8 @@
 		52604A5F2518045500A56C00 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		52604A6125180A7100A56C00 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		52604A6325182A0700A56C00 /* FavouriteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteController.swift; sourceTree = "<group>"; };
+		52604A652518341C00A56C00 /* Details.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Details.storyboard; sourceTree = "<group>"; };
+		52604A67251834EE00A56C00 /* DetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsController.swift; sourceTree = "<group>"; };
 		52A97F122516DF44001A853A /* NewMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52A97F152516DF44001A853A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52A97F172516DF44001A853A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,7 @@
 			children = (
 				52A97F192516DF44001A853A /* AllMoviesController.swift */,
 				52604A6325182A0700A56C00 /* FavouriteController.swift */,
+				52604A67251834EE00A56C00 /* DetailsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -134,6 +139,7 @@
 			children = (
 				52A97F202516DF47001A853A /* LaunchScreen.storyboard */,
 				52A97F1B2516DF44001A853A /* Main.storyboard */,
+				52604A652518341C00A56C00 /* Details.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -218,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				522F504C2517BD6800102FE1 /* Bree_Serif in Resources */,
+				52604A662518341C00A56C00 /* Details.storyboard in Resources */,
 				52A97F222516DF47001A853A /* LaunchScreen.storyboard in Resources */,
 				52A97F1F2516DF47001A853A /* Assets.xcassets in Resources */,
 				52A97F1D2516DF44001A853A /* Main.storyboard in Resources */,
@@ -278,6 +285,7 @@
 				52A97F162516DF44001A853A /* AppDelegate.swift in Sources */,
 				52604A6225180A7100A56C00 /* GradientView.swift in Sources */,
 				52D783D32517C50A00A8ED15 /* MoviesCell.swift in Sources */,
+				52604A68251834EE00A56C00 /* DetailsController.swift in Sources */,
 				52A97F182516DF44001A853A /* SceneDelegate.swift in Sources */,
 				52604A602518045500A56C00 /* Movie.swift in Sources */,
 				52604A6425182A0700A56C00 /* FavouriteController.swift in Sources */,

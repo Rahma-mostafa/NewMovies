@@ -19,6 +19,7 @@ class MoviesCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         roundedView.layer.cornerRadius = 16
+        movieImageView.layer.cornerRadius = 8
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
