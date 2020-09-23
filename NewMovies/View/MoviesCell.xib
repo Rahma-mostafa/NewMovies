@@ -24,7 +24,7 @@
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbt-e4-Edy">
                         <rect key="frame" x="20" y="10" width="368" height="110"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-tJ-nQn">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eWc-tJ-nQn">
                                 <rect key="frame" x="20" y="20" width="40" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7R1-qo-qkA"/>
@@ -42,8 +42,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9bb-D2-wqI">
                                 <rect key="frame" x="296" y="66" width="56" height="24"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="star (3)" translatesAutoresizingMaskIntoConstraints="NO" id="qmZ-6B-E2n">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="qmZ-6B-E2n">
                                         <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                                        <color key="tintColor" red="0.99131172895431519" green="0.78263109922409058" blue="0.22717404365539551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="uC5-jt-6ZD"/>
                                             <constraint firstAttribute="width" constant="24" id="wpY-Te-Taf"/>
@@ -99,6 +100,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="star (3)" width="13" height="12"/>
+        <image name="star.fill" catalog="system" width="64" height="58"/>
     </resources>
 </document>

@@ -22,6 +22,7 @@
 		52A97F222516DF47001A853A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52A97F202516DF47001A853A /* LaunchScreen.storyboard */; };
 		52D783D32517C50A00A8ED15 /* MoviesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D783D12517C50A00A8ED15 /* MoviesCell.swift */; };
 		52D783D42517C50A00A8ED15 /* MoviesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D783D22517C50A00A8ED15 /* MoviesCell.xib */; };
+		52EFD366251A93750005B1C3 /* MoviesPlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EFD365251A93750005B1C3 /* MoviesPlayList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		52A97F232516DF47001A853A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52D783D12517C50A00A8ED15 /* MoviesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCell.swift; sourceTree = "<group>"; };
 		52D783D22517C50A00A8ED15 /* MoviesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesCell.xib; sourceTree = "<group>"; };
+		52EFD365251A93750005B1C3 /* MoviesPlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesPlayList.swift; sourceTree = "<group>"; };
 		97DBDE3245FA2C048F74C169 /* Pods-NewMovies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewMovies.release.xcconfig"; path = "Target Support Files/Pods-NewMovies/Pods-NewMovies.release.xcconfig"; sourceTree = "<group>"; };
 		BAEDCFA11F5168E6B8EF2A5E /* Pods-NewMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewMovies.debug.xcconfig"; path = "Target Support Files/Pods-NewMovies/Pods-NewMovies.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 			children = (
 				52604A5F2518045500A56C00 /* Movie.swift */,
 				52604A6125180A7100A56C00 /* GradientView.swift */,
+				52EFD365251A93750005B1C3 /* MoviesPlayList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				52D783D32517C50A00A8ED15 /* MoviesCell.swift in Sources */,
 				52604A68251834EE00A56C00 /* DetailsController.swift in Sources */,
 				52A97F182516DF44001A853A /* SceneDelegate.swift in Sources */,
+				52EFD366251A93750005B1C3 /* MoviesPlayList.swift in Sources */,
 				52604A602518045500A56C00 /* Movie.swift in Sources */,
 				52604A6425182A0700A56C00 /* FavouriteController.swift in Sources */,
 			);
