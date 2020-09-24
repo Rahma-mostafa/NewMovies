@@ -26,9 +26,7 @@ struct Result: Codable {
     let posterPath: String
     let id: Int
     let adult: Bool
-    let backdropPath: String
-    let originalLanguage: OriginalLanguage
-    let originalTitle: String
+    let backdropPath, originalLanguage, originalTitle: String
     let genreIDS: [Int]
     let title: String
     let voteAverage: Double
@@ -49,11 +47,4 @@ struct Result: Codable {
         case overview
         case releaseDate = "release_date"
     }
-}
-
-enum OriginalLanguage: String, Codable {
-    case en = "en"
-    case es = "es"
-    case ko = "ko"
-    case zh = "zh"
 }

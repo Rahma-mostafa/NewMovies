@@ -16,8 +16,13 @@ class AllMoviesController: UIViewController {
     @IBOutlet var moviesTableView: UITableView!
     //variables
     var resultsArray:[Result] = []
+    var selectedRow:[Result] = []
+    let baseImageUrl = "https://image.tmdb.org/t/p/original"
+
+    
+
     let colorArray:[UIColor] = [UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.3, green: 0, blue: 0.3, alpha: 0.8),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0.50, green: 0, blue: 1.6, alpha: 0.7),UIColor(red: 0.4, green: 0.2, blue: 0.6, alpha: 0.16)]
-    var movieID = ""
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -57,10 +62,10 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         cell.movieNameLabel.text = resultsArray[indexPath.item].originalTitle
         cell.categoryLabel.text = resultsArray[indexPath.item].releaseDate
         cell.rateLabel.text = "\( resultsArray[indexPath.item].voteAverage)"
-        let baseUrl = "https://image.tmdb.org/t/p/original"
         let posterPath = resultsArray[indexPath.row].posterPath
-        let url = URL(string: "\(baseUrl)" + "\(posterPath)")
+        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
         cell.movieImageView.sd_setImage(with: url )
+    
 
         
 //        var index = indexPath.item
@@ -73,7 +78,14 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        self.selectedRow = [resultsArray[indexPath.row]]
+        let storyboard = UIStoryboard(name: "Details", bundle: nil)
+        let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
+        scene.selectedRow = self.selectedRow
+        navigationController?.pushViewController(scene, animated: true)
+             
+             
+            
     }
     
     
