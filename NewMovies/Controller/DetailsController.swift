@@ -17,11 +17,12 @@ import SafariServices
 //protocol videoDelegate {
 //    func didTapWatchNow(url: String)
 //}
-class DetailsController: UIViewController {
+class DetailsController: BaseController  {
     @IBOutlet var movieNameLabel: UILabel!
     @IBOutlet var movieCategoryLabel: UILabel!
     @IBOutlet var movieImageView: UIImageView!
     @IBOutlet var videoImageView: UIImageView!
+    @IBOutlet var shadowView: UIView!
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     //variables
@@ -36,11 +37,14 @@ class DetailsController: UIViewController {
         super.viewDidLoad()
         setCornerRadius()
         setData()
+        self.hiddenNav = true
+        
 //        delegate = self
     }
     func setCornerRadius(){
-        movieImageView.layer.cornerRadius = 32
-        videoImageView.layer.cornerRadius = 8
+        movieImageView.layer.cornerRadius = 29
+        videoImageView.layer.cornerRadius = 16
+        shadowView.layer.cornerRadius = 16
     }
     func setData(){
         self.movieNameLabel.text = selectedRow[0].originalTitle
@@ -61,6 +65,7 @@ class DetailsController: UIViewController {
      }
     
     @IBAction func onBackButtonTapped(_ sender: Any) {
+        back()
     }
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
     }
