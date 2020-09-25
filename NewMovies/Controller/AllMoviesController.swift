@@ -18,6 +18,7 @@ class AllMoviesController: UIViewController {
     @IBOutlet var moviesTableView: UITableView!
     //variables
     var resultsArray:[Result] = []
+    var newResults:[Result] = []
     var selectedRow:[Result] = []
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     var currentPage: Int = 1
@@ -33,7 +34,7 @@ class AllMoviesController: UIViewController {
         moviesTableView.addPullToRefresh {
               print("Test")
             self.currentPage = self.currentPage + 1
-            self.getCoreData()
+            self.getMoreData()
           }
     
     }
@@ -55,20 +56,20 @@ class AllMoviesController: UIViewController {
             }
         }
     }
-        func getCoreData(){
+        func getMoreData(){
             Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)&fbclid=IwAR1PuKNdOP36m7wipxt3lk3HHJJhYDixpvZLxRa66rqtH2y1T08oeUkH9Kk")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-                if let self = self {
-    //                print(response.response?.statusCode)
-    //                 print("\(response.data)")
-                     let jsonDecoder = JSONDecoder()
-                     let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
-                    self.resultsArray = model!.results
+             if let self = self {
+                    let jsonDecoder = JSONDecoder()
+                    let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
+                    var newResults = model!.results
+                    newResults += self.resultsArray
+                    self.resultsArray = newResults
                     self.moviesTableView.reloadData()
-                    self.moviesTableView.showsPullToRefresh = false
-
+                    self.moviesTableView.pullToRefreshView.stopAnimating()
                 }else{
                     return
                 }
+              
             }
         }
     
