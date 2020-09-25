@@ -33,8 +33,8 @@ class AllMoviesController: UIViewController {
         moviesTableView.addPullToRefresh {
               print("Test")
             self.currentPage = self.currentPage + 1
+            self.getCoreData()
           }
-        getCoreData()
     
     }
     func setup(){
