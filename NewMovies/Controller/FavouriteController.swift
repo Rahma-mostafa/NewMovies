@@ -20,8 +20,8 @@ class FavouriteController: BaseController {
         setup()
         self.hiddenNav = true
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
-        var jsonDecoder = JSONDecoder()
-        favArray = try! jsonDecoder.decode([Result].self, from: favMovies!) ?? [Result]()
+        let jsonDecoder = JSONDecoder()
+        favArray = try! jsonDecoder.decode([Result].self, from: favMovies!)
         self.moviesTableView.reloadData()
 
 
