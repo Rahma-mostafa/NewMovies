@@ -73,8 +73,8 @@ class DetailsController: BaseController  {
 //        UserDefaults.standard.set(selectedRow[0].originalTitle, forKey: "movieName")
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
         var favArray = [Result]()
-        var jsonDecoder = JSONDecoder()
-        var jsonEncoder = JSONEncoder()
+        let jsonDecoder = JSONDecoder()
+        let jsonEncoder = JSONEncoder()
         if favMovies != nil{
             favArray = try! jsonDecoder.decode([Result].self, from: favMovies!) ?? [Result]()
         }

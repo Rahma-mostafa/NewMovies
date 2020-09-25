@@ -13,7 +13,6 @@ class FavouriteController: BaseController {
     var moviesArray:[Movie] = [Movie()]
     var favArray = [Result]()
     var selectedRow:Result?
-    var favourite: Any?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,15 +41,12 @@ class FavouriteController: BaseController {
 }
 extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesArray.count
+        return favArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
 //                cell.movieImageView.image = UIImage(named: "yasmine")
-
-
-
         cell.movieNameLabel.text = favArray[indexPath.item].originalTitle
 //                cell.categoryLabel.text = moviesArray[indexPath.item].category
 //                cell.rateLabel.text = moviesArray[indexPath.item].rate
