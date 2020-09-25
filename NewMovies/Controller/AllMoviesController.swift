@@ -64,6 +64,8 @@ class AllMoviesController: UIViewController {
                      let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
                     self.resultsArray = model!.results
                     self.moviesTableView.reloadData()
+                    self.moviesTableView.showsPullToRefresh = false
+
                 }else{
                     return
                 }
