@@ -26,7 +26,7 @@ class DetailsController: BaseController  {
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
     //variables
-    var selectedRow:[Result] = [] //passed array that has the selected Item
+    var selectedRow:Result? //passed array that has the selected Item
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     // I assume any static videoUrl for all items as the api used does't have videos url
     let videoUrl = "https://www.youtube.com/watch?v=cjzu8pzx1Wc&t=1s&has_verified=1"
@@ -47,16 +47,17 @@ class DetailsController: BaseController  {
         shadowView.layer.cornerRadius = 16
     }
     func setData(){
-        self.movieNameLabel.text = selectedRow[0].originalTitle
-        self.movieCategoryLabel.text = selectedRow[0].releaseDate
-        self.descriptionLabel.text = selectedRow[0].overview
-        self.rateLabel.text = "\(selectedRow[0].voteAverage)"
-        let posterPath = selectedRow[0].posterPath
-        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
-        self.movieImageView.sd_setImage(with: url)
-        let videoImageUrl = selectedRow[0].backdropPath
-        let ImageUrl = URL(string: "\(baseImageUrl)" + "\(videoImageUrl)")
-        self.videoImageView.sd_setImage(with: ImageUrl)
+        self.movieNameLabel.text = selectedRow?.originalTitle ?? ""
+        
+//        self.movieCategoryLabel.text = selectedRow[0].releaseDate
+//        self.descriptionLabel.text = selectedRow[0].overview
+//        self.rateLabel.text = "\(selectedRow[0].voteAverage)"
+//        let posterPath = selectedRow[0].posterPath
+//        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
+//        self.movieImageView.sd_setImage(with: url)
+//        let videoImageUrl = selectedRow[0].backdropPath
+//        let ImageUrl = URL(string: "\(baseImageUrl)" + "\(videoImageUrl)")
+//        self.videoImageView.sd_setImage(with: ImageUrl)
     }
     func didTapWatchNow(url: String){
          let videoURL = URL(string: url)!
@@ -69,7 +70,7 @@ class DetailsController: BaseController  {
     }
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
 //        UserDefaults.standard.set(movieNameLabel.text, forKey: "movieName")
-        UserDefaults.standard.set(selectedRow[0].originalTitle, forKey: "movieName")
+//        UserDefaults.standard.set(selectedRow[0].originalTitle, forKey: "movieName")
 
         
 

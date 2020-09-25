@@ -11,7 +11,7 @@ import UIKit
 class FavouriteController: BaseController {
     @IBOutlet var moviesTableView: UITableView!
     var moviesArray:[Movie] = [Movie()]
-    var selectedRow:[Result] = []
+    var selectedRow:Result?
     var favourite: Any?
 
     override func viewDidLoad() {
