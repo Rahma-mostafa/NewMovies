@@ -10,6 +10,8 @@ import UIKit
 import Alamofire
 import SDWebImage
 import KRProgressHUD
+import SVPullToRefresh
+
 
 class AllMoviesController: UIViewController {
 
@@ -18,6 +20,7 @@ class AllMoviesController: UIViewController {
     var resultsArray:[Result] = []
     var selectedRow:[Result] = []
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
+    var currentPage: Int = 1
 
     
 
@@ -27,7 +30,12 @@ class AllMoviesController: UIViewController {
         super.viewDidLoad()
         setup()
         getData()
-        
+        moviesTableView.addPullToRefresh {
+              print("Test")
+            self.currentPage = self.currentPage + 1
+          }
+        getCoreData()
+    
     }
     func setup(){
         moviesTableView.delegate = self
@@ -47,6 +55,21 @@ class AllMoviesController: UIViewController {
             }
         }
     }
+        func getCoreData(){
+            Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)&fbclid=IwAR1PuKNdOP36m7wipxt3lk3HHJJhYDixpvZLxRa66rqtH2y1T08oeUkH9Kk")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+                if let self = self {
+    //                print(response.response?.statusCode)
+    //                 print("\(response.data)")
+                     let jsonDecoder = JSONDecoder()
+                     let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
+                    self.resultsArray = model!.results
+                    self.moviesTableView.reloadData()
+                }else{
+                    return
+                }
+            }
+        }
+    
 
 
 }
@@ -78,6 +101,7 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
         self.selectedRow = [resultsArray[indexPath.row]]
         let storyboard = UIStoryboard(name: "Details", bundle: nil)
         let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
@@ -87,6 +111,10 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
              
             
     }
+  
+ 
+
+ 
     
     
     

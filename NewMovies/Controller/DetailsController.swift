@@ -68,6 +68,16 @@ class DetailsController: BaseController  {
         back()
     }
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
+//        UserDefaults.standard.set(movieNameLabel.text, forKey: "movieName")
+        UserDefaults.standard.set(selectedRow[0].originalTitle, forKey: "movieName")
+
+        
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let scene = storyboard.instantiateViewController(withIdentifier: "FavouriteController") as! FavouriteController
+        scene.selectedRow = self.selectedRow
+        navigationController?.pushViewController(scene, animated: true)
+        
     }
     @IBAction func onPlayButtonTapped(_ sender: Any) {
 //        delegate?.didTapWatchNow(url: videoUrl)

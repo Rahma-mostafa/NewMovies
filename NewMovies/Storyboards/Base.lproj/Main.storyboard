@@ -87,14 +87,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ta-IE-rsv">
+                                <rect key="frame" x="20" y="108" width="29" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="19" id="4Zx-fD-S53"/>
+                                    <constraint firstAttribute="width" constant="29" id="OpC-Ma-4Xd"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="arrow.left" catalog="system"/>
+                                <connections>
+                                    <action selector="onBackButtobTapped:" destination="rMD-V9-pIk" eventType="touchUpInside" id="bCG-ki-hzB"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyFavourites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLi-zp-sLl">
-                                <rect key="frame" x="20" y="108" width="124" height="27.5"/>
+                                <rect key="frame" x="20" y="147" width="124" height="27.5"/>
                                 <fontDescription key="fontDescription" name="BreeSerif-Regular" family="Bree Serif" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7NJ-Vz-BJs">
-                                <rect key="frame" x="20" y="155.5" width="374" height="686.5"/>
+                                <rect key="frame" x="20" y="194.5" width="374" height="647.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
@@ -102,10 +114,12 @@
                         <constraints>
                             <constraint firstItem="55u-ns-tPj" firstAttribute="bottom" secondItem="7NJ-Vz-BJs" secondAttribute="bottom" constant="20" id="5yl-dR-4wZ"/>
                             <constraint firstItem="55u-ns-tPj" firstAttribute="trailing" secondItem="7NJ-Vz-BJs" secondAttribute="trailing" constant="20" id="6AE-kO-1eY"/>
-                            <constraint firstItem="JLi-zp-sLl" firstAttribute="top" secondItem="55u-ns-tPj" secondAttribute="top" constant="20" id="JKq-hf-h4B"/>
                             <constraint firstItem="7NJ-Vz-BJs" firstAttribute="top" secondItem="JLi-zp-sLl" secondAttribute="bottom" constant="20" id="Mhb-kD-3zA"/>
                             <constraint firstItem="7NJ-Vz-BJs" firstAttribute="leading" secondItem="55u-ns-tPj" secondAttribute="leading" constant="20" id="Z9w-B7-Sdz"/>
                             <constraint firstItem="JLi-zp-sLl" firstAttribute="leading" secondItem="55u-ns-tPj" secondAttribute="leading" constant="20" id="eZt-UP-zY3"/>
+                            <constraint firstItem="JLi-zp-sLl" firstAttribute="top" secondItem="4ta-IE-rsv" secondAttribute="bottom" constant="20" id="h55-JF-KIc"/>
+                            <constraint firstItem="4ta-IE-rsv" firstAttribute="top" secondItem="55u-ns-tPj" secondAttribute="top" constant="20" id="jRy-Ma-HoO"/>
+                            <constraint firstItem="4ta-IE-rsv" firstAttribute="leading" secondItem="55u-ns-tPj" secondAttribute="leading" constant="20" id="vf5-75-vWw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="55u-ns-tPj"/>
                     </view>
@@ -127,6 +141,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.left" catalog="system" width="64" height="48"/>
         <image name="arrowshape.turn.up.left.2.fill" catalog="system" width="64" height="42"/>
         <image name="square.grid.3x2.fill" catalog="system" width="64" height="40"/>
     </resources>
