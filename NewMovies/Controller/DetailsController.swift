@@ -71,6 +71,16 @@ class DetailsController: BaseController  {
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
 //        UserDefaults.standard.set(movieNameLabel.text, forKey: "movieName")
 //        UserDefaults.standard.set(selectedRow[0].originalTitle, forKey: "movieName")
+        let favMovies = UserDefaults.standard.data(forKey: "favMovies")
+        var favArray = [Result]()
+        var jsonDecoder = JSONDecoder()
+        var jsonEncoder = JSONEncoder()
+        if favMovies != nil{
+            favArray = try! jsonDecoder.decode([Result].self, from: favMovies!) ?? [Result]()
+        }
+        favArray.append(self.selectedRow!)
+        let newFavMovies = try! jsonEncoder.encode(favArray)
+        UserDefaults.standard.set(newFavMovies, forKey: "favMovies")
 
         
 

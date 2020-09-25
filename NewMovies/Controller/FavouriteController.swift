@@ -11,6 +11,7 @@ import UIKit
 class FavouriteController: BaseController {
     @IBOutlet var moviesTableView: UITableView!
     var moviesArray:[Movie] = [Movie()]
+    var favArray = [Result]()
     var selectedRow:Result?
     var favourite: Any?
 
@@ -18,9 +19,9 @@ class FavouriteController: BaseController {
         super.viewDidLoad()
         setup()
         self.hiddenNav = true
-        let movieName = UserDefaults.standard.string(forKey: "movieName")
-       let object =  Movie(image: "movieName", name: movieName, category: "movieName", rate: "movieName")
-        self.moviesArray.append(object)
+        let favMovies = UserDefaults.standard.data(forKey: "favMovies")
+        var jsonDecoder = JSONDecoder()
+        favArray = try! jsonDecoder.decode([Result].self, from: favMovies!) ?? [Result]()
         self.moviesTableView.reloadData()
 
 
@@ -47,7 +48,9 @@ extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
 //                cell.movieImageView.image = UIImage(named: "yasmine")
 
-        cell.movieNameLabel.text = moviesArray[indexPath.item].name
+
+
+        cell.movieNameLabel.text = favArray[indexPath.row].originalTitle
 //                cell.categoryLabel.text = moviesArray[indexPath.item].category
 //                cell.rateLabel.text = moviesArray[indexPath.item].rate
                 return cell
