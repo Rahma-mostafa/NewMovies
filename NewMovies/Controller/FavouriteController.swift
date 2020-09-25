@@ -22,6 +22,7 @@ class FavouriteController: BaseController {
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
         let jsonDecoder = JSONDecoder()
         favArray = try! jsonDecoder.decode([Result].self, from: favMovies!)
+        print(favArray)
         self.moviesTableView.reloadData()
 
 
@@ -50,7 +51,7 @@ extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
 
 
 
-        cell.movieNameLabel.text = favArray[indexPath.row].originalTitle
+        cell.movieNameLabel.text = favArray[indexPath.item].originalTitle
 //                cell.categoryLabel.text = moviesArray[indexPath.item].category
 //                cell.rateLabel.text = moviesArray[indexPath.item].rate
                 return cell
