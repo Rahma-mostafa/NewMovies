@@ -23,6 +23,10 @@ class AllMoviesController: UIViewController {
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     var currentPage: Int = 1
     let colorArray:[UIColor] = [UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.3, green: 0, blue: 0.3, alpha: 0.8),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0.50, green: 0, blue: 1.6, alpha: 0.7),UIColor(red: 0.4, green: 0.2, blue: 0.6, alpha: 0.16),UIColor(red: 0.50, green: 0, blue: 0.2, alpha: 0.9),UIColor(red: 0.8, green: 0, blue: 0.6, alpha: 0.7)]
+    var backgroundColor: UIColor?
+    var index: Int = 0
+    
+
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +90,22 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         let posterPath = resultsArray[indexPath.row].posterPath
         let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
         cell.movieImageView.sd_setImage(with: url )
-        let index = indexPath.item % 10
+        self.index = indexPath.row % colorArray.count
+        print("index =" + "\(index)")
         if indexPath.item < colorArray.count{
             cell.roundedView.backgroundColor = colorArray[indexPath.item]
         }else{
             cell.roundedView.backgroundColor = colorArray[index]
+            
         }
+//        if indexPath.row < colorArray.count{
+//            self.index = indexPath.item
+//        }else{
+//            self.index = indexPath.item % colorArray.count
+//            print(index)
+//        }
+//        cell.roundedView.backgroundColor = colorArray[index]
+//
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -99,10 +113,16 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         let storyboard = UIStoryboard(name: "Details", bundle: nil)
         let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
         scene.selectedRow = self.resultsArray[indexPath.row]
+        self.index = indexPath.row % 10
+        if indexPath.item < colorArray.count{
+            scene.backgroundColor = colorArray[indexPath.row]
+        }else{
+            scene.backgroundColor = colorArray[index]
+            print("selected index" + "\(index)")
+
+        }
+//        scene.backgroundColor = colorArray[index]
         navigationController?.pushViewController(scene, animated: true)
-             
-             
-            
     }
   
  

@@ -25,8 +25,13 @@ class DetailsController: BaseController  {
     @IBOutlet var shadowView: UIView!
     @IBOutlet var rateLabel: UILabel!
     @IBOutlet var descriptionLabel: UILabel!
+    
+    @IBOutlet var backgroundView: UIView!
+    @IBOutlet var subview: UIView!
+    
     //variables
     var selectedRow:Result? //passed array that has the selected Item
+    var backgroundColor: UIColor?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     // I assume any static videoUrl for all items as the api used does't have videos url
     let videoUrl = "https://www.youtube.com/watch?v=cjzu8pzx1Wc&t=1s&has_verified=1"
@@ -38,6 +43,7 @@ class DetailsController: BaseController  {
         setCornerRadius()
         setData()
         self.hiddenNav = true
+        self.backgroundView.backgroundColor = backgroundColor
         
 //        delegate = self
     }
@@ -48,6 +54,7 @@ class DetailsController: BaseController  {
     }
     func setData(){
         self.movieNameLabel.text = selectedRow?.originalTitle ?? ""
+        
         
 //        self.movieCategoryLabel.text = selectedRow[0].releaseDate
 //        self.descriptionLabel.text = selectedRow[0].overview
@@ -81,9 +88,6 @@ class DetailsController: BaseController  {
         favArray.append(self.selectedRow!)
         let newFavMovies = try! jsonEncoder.encode(favArray)
         UserDefaults.standard.set(newFavMovies, forKey: "favMovies")
-
-        
-
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let scene = storyboard.instantiateViewController(withIdentifier: "FavouriteController") as! FavouriteController
         scene.selectedRow = self.selectedRow

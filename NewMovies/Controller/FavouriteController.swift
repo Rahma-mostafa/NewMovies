@@ -33,11 +33,6 @@ class FavouriteController: BaseController {
     @IBAction func onBackButtobTapped(_ sender: Any) {
         back()
     }
-    
-    
-
-    
-
 }
 extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

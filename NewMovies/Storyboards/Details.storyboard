@@ -145,7 +145,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="0.66863762842465757" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="xtp-lD-zhd" firstAttribute="bottom" secondItem="5EN-qa-AAt" secondAttribute="bottom" id="3Vd-VL-TLp"/>
                                     <constraint firstAttribute="trailing" secondItem="vlF-zJ-hos" secondAttribute="trailing" constant="30" id="4MB-GS-Ycn"/>
@@ -188,12 +188,14 @@
                     </view>
                     <navigationItem key="navigationItem" id="zRv-qc-BM7"/>
                     <connections>
+                        <outlet property="backgroundView" destination="QLd-CJ-va2" id="Qep-3b-tN9"/>
                         <outlet property="descriptionLabel" destination="xG7-bV-yg7" id="nnI-8B-WU5"/>
                         <outlet property="movieCategoryLabel" destination="sRf-i4-5gi" id="v3o-9S-yEe"/>
                         <outlet property="movieImageView" destination="lDv-ms-obI" id="OqS-c2-ufZ"/>
                         <outlet property="movieNameLabel" destination="32Y-Sg-zQf" id="zkM-DO-9NA"/>
                         <outlet property="rateLabel" destination="rBz-LR-Ahd" id="alM-Cb-aqF"/>
                         <outlet property="shadowView" destination="SZj-Pa-5GA" id="AyM-No-8hB"/>
+                        <outlet property="subview" destination="vlF-zJ-hos" id="URf-Ie-48V"/>
                         <outlet property="videoImageView" destination="5EN-qa-AAt" id="UqK-5e-sQQ"/>
                     </connections>
                 </viewController>
