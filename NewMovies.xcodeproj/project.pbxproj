@@ -115,8 +115,8 @@
 			children = (
 				5250FFF2251C953C003C93F7 /* BaseController.swift */,
 				52A97F192516DF44001A853A /* AllMoviesController.swift */,
-				52604A6325182A0700A56C00 /* FavouriteController.swift */,
 				52604A67251834EE00A56C00 /* DetailsController.swift */,
+				52604A6325182A0700A56C00 /* FavouriteController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

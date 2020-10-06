@@ -177,7 +177,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="WzR-Pq-ygb" firstAttribute="trailing" secondItem="g9n-Sg-PLa" secondAttribute="trailing" id="PUk-M6-vpa"/>
                             <constraint firstItem="WzR-Pq-ygb" firstAttribute="leading" secondItem="g9n-Sg-PLa" secondAttribute="leading" id="RIg-hE-dI9"/>
@@ -190,6 +190,7 @@
                     <connections>
                         <outlet property="backgroundView" destination="QLd-CJ-va2" id="Qep-3b-tN9"/>
                         <outlet property="descriptionLabel" destination="xG7-bV-yg7" id="nnI-8B-WU5"/>
+                        <outlet property="favButton" destination="IZz-rY-bs4" id="wEt-C2-BT3"/>
                         <outlet property="movieCategoryLabel" destination="sRf-i4-5gi" id="v3o-9S-yEe"/>
                         <outlet property="movieImageView" destination="lDv-ms-obI" id="OqS-c2-ufZ"/>
                         <outlet property="movieNameLabel" destination="32Y-Sg-zQf" id="zkM-DO-9NA"/>

@@ -14,16 +14,22 @@ import SVPullToRefresh
 
 
 class AllMoviesController: UIViewController {
+//    struct Colors: UIColor, Codable {
+//        var red: Double
+//        var green: Double
+//        var blue: Double
+//        var alpha: Double
+//    }
 
     @IBOutlet var moviesTableView: UITableView!
     //variables
-    var resultsArray:[Result] = []
-    var newResults:[Result] = []
-    var selectedRow:Result?
+    var resultsArray: [Result] = []
+    var newResults: [Result] = []
+    var selectedRow: Result?
+//    var selectedRowColor: Colors?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     var currentPage: Int = 1
     let colorArray:[UIColor] = [UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.3, green: 0, blue: 0.3, alpha: 0.8),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0.50, green: 0, blue: 1.6, alpha: 0.7),UIColor(red: 0.4, green: 0.2, blue: 0.6, alpha: 0.16),UIColor(red: 0.50, green: 0, blue: 0.2, alpha: 0.9),UIColor(red: 0.8, green: 0, blue: 0.6, alpha: 0.7)]
-    var backgroundColor: UIColor?
     var index: Int = 0
     
 
@@ -45,7 +51,6 @@ class AllMoviesController: UIViewController {
     func getData(){
         Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=1")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
             if let self = self {
-//                print(response.response?.statusCode)
                  let jsonDecoder = JSONDecoder()
                  let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
                 self.resultsArray = model!.results
@@ -91,12 +96,10 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
         cell.movieImageView.sd_setImage(with: url )
         self.index = indexPath.row % colorArray.count
-        print("index =" + "\(index)")
         if indexPath.item < colorArray.count{
             cell.roundedView.backgroundColor = colorArray[indexPath.item]
         }else{
             cell.roundedView.backgroundColor = colorArray[index]
-            
         }
 //        if indexPath.row < colorArray.count{
 //            self.index = indexPath.item
@@ -113,15 +116,15 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         let storyboard = UIStoryboard(name: "Details", bundle: nil)
         let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
         scene.selectedRow = self.resultsArray[indexPath.row]
-        self.index = indexPath.row % 10
+        
+        self.index = indexPath.row % colorArray.count
         if indexPath.item < colorArray.count{
             scene.backgroundColor = colorArray[indexPath.row]
+//            scene.selectedRowColor = colorArray[indexPath.row]
         }else{
             scene.backgroundColor = colorArray[index]
-            print("selected index" + "\(index)")
-
+//            scene.selectedRowColor = colorArray[index]
         }
-//        scene.backgroundColor = colorArray[index]
         navigationController?.pushViewController(scene, animated: true)
     }
   
