@@ -60,8 +60,8 @@ class AllMoviesController: UIViewController {
             }
         }
     }
-        func getMoreData(){
-            Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+    func getMoreData(){
+        Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
              if let self = self {
                     let jsonDecoder = JSONDecoder()
                     let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
@@ -70,12 +70,11 @@ class AllMoviesController: UIViewController {
                     self.resultsArray = newResults
                     self.moviesTableView.reloadData()
                     self.moviesTableView.pullToRefreshView.stopAnimating()
-                }else{
-                    return
-                }
-              
+            }else{
+                return
             }
         }
+    }
     
 
 
@@ -101,14 +100,6 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         }else{
             cell.roundedView.backgroundColor = colorArray[index]
         }
-//        if indexPath.row < colorArray.count{
-//            self.index = indexPath.item
-//        }else{
-//            self.index = indexPath.item % colorArray.count
-//            print(index)
-//        }
-//        cell.roundedView.backgroundColor = colorArray[index]
-//
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

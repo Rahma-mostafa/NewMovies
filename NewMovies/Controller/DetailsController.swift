@@ -14,9 +14,7 @@ import SafariServices
 
 
 
-//protocol videoDelegate {
-//    func didTapWatchNow(url: String)
-//}
+
 class DetailsController: BaseController  {
     @IBOutlet var movieNameLabel: UILabel!
     @IBOutlet var movieCategoryLabel: UILabel!
@@ -39,16 +37,12 @@ class DetailsController: BaseController  {
     var favArray = [Result]()
 
 
-//    var delegate: videoDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setCornerRadius()
         setData()
         self.hiddenNav = true
-        self.backgroundView.backgroundColor = backgroundColor
-        
-//        delegate = self
     }
     func setCornerRadius(){
         movieImageView.layer.cornerRadius = 29
@@ -56,27 +50,29 @@ class DetailsController: BaseController  {
         shadowView.layer.cornerRadius = 16
     }
     func setData(){
+        self.backgroundView.backgroundColor = backgroundColor
         self.movieNameLabel.text = selectedRow?.originalTitle ?? ""
-        
-        
-//        self.movieCategoryLabel.text = selectedRow[0].releaseDate
-//        self.descriptionLabel.text = selectedRow[0].overview
-//        self.rateLabel.text = "\(selectedRow[0].voteAverage)"
-//        let posterPath = selectedRow[0].posterPath
-//        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
-//        self.movieImageView.sd_setImage(with: url)
-//        let videoImageUrl = selectedRow[0].backdropPath
-//        let ImageUrl = URL(string: "\(baseImageUrl)" + "\(videoImageUrl)")
-//        self.videoImageView.sd_setImage(with: ImageUrl)
+        self.movieCategoryLabel.text = selectedRow?.releaseDate ?? ""
+        self.descriptionLabel.text = selectedRow?.overview ?? ""
+        self.rateLabel.text = "\(String(describing: selectedRow?.voteAverage ?? 0 ))"
+        let posterPath = selectedRow?.posterPath
+        let url = URL(string: "\(baseImageUrl)" + "\(String(describing: posterPath))")
+        self.movieImageView.sd_setImage(with: url)
+        let videoImageUrl = selectedRow?.backdropPath
+        let ImageUrl = URL(string: "\(baseImageUrl)" + "\(String(describing: videoImageUrl))")
+        self.videoImageView.sd_setImage(with: ImageUrl)
     }
     func didTapWatchNow(url: String){
          let videoURL = URL(string: url)!
          let safariVC = SFSafariViewController(url: videoURL)
-         self.present(safariVC, animated: true, : nil)
+         self.present(safariVC, animated: true, completion: nil)
      }
     
     @IBAction func onBackButtonTapped(_ sender: Any) {
         back()
+    }
+    @IBAction func onPlayButtonTapped(_ sender: Any) {
+        didTapWatchNow(url: videoUrl)
     }
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
         let image = UIImage(named: "star (3)")
@@ -105,10 +101,7 @@ class DetailsController: BaseController  {
         navigationController?.pushViewController(scene, animated: true)
         
     }
-    @IBAction func onPlayButtonTapped(_ sender: Any) {
-//        delegate?.didTapWatchNow(url: videoUrl)
-        didTapWatchNow(url: videoUrl)
-    }
+
 
 
 
