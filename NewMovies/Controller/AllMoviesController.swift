@@ -23,9 +23,9 @@ class AllMoviesController: UIViewController {
 
     @IBOutlet var moviesTableView: UITableView!
     //variables
-    var resultsArray: [Result] = []
-    var newResults: [Result] = []
-    var selectedRow: Result?
+    var resultsArray: [Movie] = []
+    var newResults: [Movie] = []
+    var selectedRow: Movie?
 //    var selectedRowColor: Colors?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     var currentPage: Int = 1
@@ -52,7 +52,7 @@ class AllMoviesController: UIViewController {
         Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=1")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
             if let self = self {
                  let jsonDecoder = JSONDecoder()
-                 let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
+                 let model = try? jsonDecoder.decode(MoviesPlayList.self, from: response.data!)
                 self.resultsArray = model!.results
                 self.moviesTableView.reloadData()
             }else{
@@ -64,7 +64,7 @@ class AllMoviesController: UIViewController {
         Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
              if let self = self {
                     let jsonDecoder = JSONDecoder()
-                    let model = try? jsonDecoder.decode(Welcome.self, from: response.data!)
+                    let model = try? jsonDecoder.decode(MoviesPlayList.self, from: response.data!)
                     var newResults = model!.results
                     newResults += self.resultsArray
                     self.resultsArray = newResults

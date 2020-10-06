@@ -12,7 +12,7 @@ import SDWebImage
 class FavouriteController: BaseController {
     @IBOutlet var moviesTableView: UITableView!
     var moviesArray:[Movie] = [Movie()]
-    var favArray = [Result]()
+    var favArray = [Movie]()
 //    var selectedRow:Result?
     var backgroundColor: UIColor?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
@@ -35,7 +35,7 @@ class FavouriteController: BaseController {
     func setData(){
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
         let jsonDecoder = JSONDecoder()
-        favArray = try! jsonDecoder.decode([Result].self, from: favMovies!)
+        favArray = try! jsonDecoder.decode([Movie].self, from: favMovies!)
         self.moviesTableView.reloadData()
 
     }

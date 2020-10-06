@@ -5,10 +5,10 @@
 
 import Foundation
 
-// MARK: - Welcome
-struct Welcome: Codable {
+// MARK: - MoviesPlayList
+struct MoviesPlayList: Codable {
     let page, totalResults, totalPages: Int
-    let results: [Result]
+    let results: [Movie]
 
     enum CodingKeys: String, CodingKey {
         case page
@@ -18,8 +18,8 @@ struct Welcome: Codable {
     }
 }
 
-// MARK: - Result
-struct Result: Codable {
+// MARK: - Movie
+struct Movie: Codable {
     let popularity: Double
     let voteCount: Int
     let video: Bool

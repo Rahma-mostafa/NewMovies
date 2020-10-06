@@ -27,14 +27,14 @@ class DetailsController: BaseController  {
     @IBOutlet var subview: UIView!
     @IBOutlet weak var favButton: UIButton!
     //variables
-    var selectedRow:Result? //passed array that has the selected Item
+    var selectedRow:Movie? //passed array that has the selected Item
     var backgroundColor: UIColor?
 //    var colorArray: [Colors] = []
 //    var selectedRowColor: Colors?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
     // I assume any static videoUrl for all items as the api used does't have videos url
     let videoUrl = "https://www.youtube.com/watch?v=cjzu8pzx1Wc&t=1s&has_verified=1"
-    var favArray = [Result]()
+    var favArray = [Movie]()
 
 
 
@@ -82,7 +82,7 @@ class DetailsController: BaseController  {
         let jsonDecoder = JSONDecoder()
         let jsonEncoder = JSONEncoder()
         if favMovies != nil{
-            favArray = try! jsonDecoder.decode([Result].self, from: favMovies!)
+            favArray = try! jsonDecoder.decode([Movie].self, from: favMovies!)
         }
         for index in 0 ..< favArray.count{
             if selectedRow?.id ==  favArray[index].id{
