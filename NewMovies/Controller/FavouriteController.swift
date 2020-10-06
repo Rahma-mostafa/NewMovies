@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class FavouriteController: BaseController {
     @IBOutlet var moviesTableView: UITableView!
@@ -14,6 +15,8 @@ class FavouriteController: BaseController {
     var favArray = [Result]()
 //    var selectedRow:Result?
     var backgroundColor: UIColor?
+    let baseImageUrl = "https://image.tmdb.org/t/p/original"
+
 
 
 
@@ -48,12 +51,13 @@ extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
 //        cell.roundedView.backgroundColor = colorArray[indexPath.row]
-//                cell.movieImageView.image = UIImage(named: "yasmine")
+        let posterPath = favArray[indexPath.row].posterPath
+        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
+        cell.movieImageView.sd_setImage(with: url )
         cell.movieNameLabel.text = favArray[indexPath.item].originalTitle
-//                cell.categoryLabel.text = moviesArray[indexPath.item].category
-//                cell.rateLabel.text = moviesArray[indexPath.item].rate
-        
-                return cell
+        cell.categoryLabel.text = favArray[indexPath.item].releaseDate
+        cell.rateLabel.text = "\(favArray[indexPath.item].voteAverage)"
+        return cell
     }
     
     

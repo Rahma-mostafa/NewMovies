@@ -55,10 +55,11 @@ class DetailsController: BaseController  {
         self.movieCategoryLabel.text = selectedRow?.releaseDate ?? ""
         self.descriptionLabel.text = selectedRow?.overview ?? ""
         self.rateLabel.text = "\(String(describing: selectedRow?.voteAverage ?? 0 ))"
-        let posterPath = selectedRow?.posterPath
+        let posterPath = selectedRow?.posterPath ?? ""
         let url = URL(string: "\(baseImageUrl)" + "\(String(describing: posterPath))")
+          print(posterPath)
         self.movieImageView.sd_setImage(with: url)
-        let videoImageUrl = selectedRow?.backdropPath
+        let videoImageUrl = selectedRow?.backdropPath ?? ""
         let ImageUrl = URL(string: "\(baseImageUrl)" + "\(String(describing: videoImageUrl))")
         self.videoImageView.sd_setImage(with: ImageUrl)
     }

@@ -87,7 +87,6 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
-        cell.movieImageView.image = UIImage(named: "yasmine")
         cell.movieNameLabel.text = resultsArray[indexPath.item].originalTitle
         cell.categoryLabel.text = resultsArray[indexPath.item].releaseDate
         cell.rateLabel.text = "\( resultsArray[indexPath.item].voteAverage)"
