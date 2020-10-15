@@ -11,11 +11,12 @@ import SDWebImage
 
 class FavouriteController: BaseController {
     @IBOutlet var moviesTableView: UITableView!
-    var moviesArray:[Movie] = [Movie()]
     var favArray = [Movie]()
 //    var selectedRow:Result?
     var backgroundColor: UIColor?
     let baseImageUrl = "https://image.tmdb.org/t/p/original"
+    var colorArray = [UIColor]()
+    var index: Int?
 
 
 
@@ -23,21 +24,22 @@ class FavouriteController: BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setData()
         self.hiddenNav = true
+//        self.colorArray.append(backgroundColor!)
+//        print(colorArray)
+        readFavMoviesSaved()
  
 
     }
-    func setup(){
+   private func setup(){
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
     }
-    func setData(){
+    private func readFavMoviesSaved(){
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
         let jsonDecoder = JSONDecoder()
         favArray = try! jsonDecoder.decode([Movie].self, from: favMovies!)
         self.moviesTableView.reloadData()
-
     }
     @IBAction func onBackButtobTapped(_ sender: Any) {
         back()
@@ -50,7 +52,6 @@ extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
-//        cell.roundedView.backgroundColor = colorArray[indexPath.row]
         let posterPath = favArray[indexPath.row].posterPath
         let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
         cell.movieImageView.sd_setImage(with: url )

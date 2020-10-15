@@ -26,6 +26,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>ArbFONTS-Sukar Bold.ttf</string>
 		<string>BreeSerif-Regular.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>

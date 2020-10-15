@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0BFBE7E2252C00FC0077D844 /* ArbFONTS-Sukar Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArbFONTS-Sukar Bold.ttf"; sourceTree = "<group>"; };
 		24025DE2CEC523EAA512931F /* Pods_NewMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522F504B2517BD6800102FE1 /* Bree_Serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Bree_Serif; sourceTree = "<group>"; };
 		5250FFF2251C953C003C93F7 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -71,6 +72,7 @@
 		522F504A2517BD3300102FE1 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				0BFBE7E2252C00FC0077D844 /* ArbFONTS-Sukar Bold.ttf */,
 				522F504B2517BD6800102FE1 /* Bree_Serif */,
 			);
 			path = Fonts;

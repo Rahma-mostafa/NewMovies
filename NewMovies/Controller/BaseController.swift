@@ -10,6 +10,7 @@ import UIKit
 
 class BaseController: UIViewController {
     var hiddenNav: Bool = false
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
@@ -41,5 +42,11 @@ class BaseController: UIViewController {
     func back(){
         self.navigationController?.popViewController(animated: true)
     }
+    func didTapWatchNow(url: String){
+         let videoURL = URL(string: url)!
+         let safariVC = SFSafariViewController(url: videoURL)
+         self.present(safariVC, animated: true, completion: nil)
+     }
+    
 
 }

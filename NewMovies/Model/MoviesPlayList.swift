@@ -49,4 +49,15 @@ struct Movie: Codable {
     }
 }
 
+//MARK:-  Colors
+struct Colors {
+    var red = 0.50
+    var green = 0
+    var blue =  0.6
+    var alpha =  0.9
+
+}
+
+
+
 

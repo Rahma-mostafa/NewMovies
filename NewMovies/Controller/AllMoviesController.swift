@@ -14,67 +14,77 @@ import SVPullToRefresh
 
 
 class AllMoviesController: UIViewController {
-//    struct Colors: UIColor, Codable {
-//        var red: Double
-//        var green: Double
-//        var blue: Double
-//        var alpha: Double
-//    }
+
+    
 
     @IBOutlet var moviesTableView: UITableView!
     //variables
+    enum Constants{
+        static let baseImageUrl = "https://image.tmdb.org/t/p/original"
+        static let baseApiUrl = "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page="
+    }
     var resultsArray: [Movie] = []
     var newResults: [Movie] = []
     var selectedRow: Movie?
-//    var selectedRowColor: Colors?
-    let baseImageUrl = "https://image.tmdb.org/t/p/original"
     var currentPage: Int = 1
     let colorArray:[UIColor] = [UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0, alpha: 0.7),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.7),UIColor(red: 0.3, green: 0, blue: 0.3, alpha: 0.8),UIColor(red: 0.50, green: 0, blue: 0.6, alpha: 0.9),UIColor(red: 0.50, green: 0, blue: 1.6, alpha: 0.7),UIColor(red: 0.4, green: 0.2, blue: 0.6, alpha: 0.16),UIColor(red: 0.50, green: 0, blue: 0.2, alpha: 0.9),UIColor(red: 0.8, green: 0, blue: 0.6, alpha: 0.7)]
     var index: Int = 0
+    var backgroundColor: UIColor?
+    var responseData: Data?
+    let jsonDecoder = JSONDecoder()
     
-
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         getData()
+        addPullToRefresh()
+
+    
+    }
+    private func setup(){
+        moviesTableView.delegate = self
+        moviesTableView.dataSource = self
+    }
+    private func getData(){
+        Alamofire.request(URL(string: Constants.baseApiUrl)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+             if let self = self {
+                self.responseData = response.data
+                self.decodeResponseData()
+             }else{
+                return
+            }
+        }
+    }
+    private func getMoreData(){
+        Alamofire.request(URL(string: Constants.baseApiUrl + "\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+             if let self = self {
+                self.responseData = response.data
+                self.decodeCurrentPageResponse()
+            }else{
+                return
+            }
+        }
+    }
+    private func addPullToRefresh(){
         moviesTableView.addPullToRefresh {
             self.currentPage = self.currentPage + 1
             self.getMoreData()
           }
-    
     }
-    func setup(){
-        moviesTableView.delegate = self
-        moviesTableView.dataSource = self
+    private func decodeResponseData(){
+        let model = try? jsonDecoder.decode(MoviesPlayList.self, from: self.responseData!)
+        self.resultsArray = model!.results
+        self.moviesTableView.reloadData()
     }
-    func getData(){
-        Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=1")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-            if let self = self {
-                 let jsonDecoder = JSONDecoder()
-                 let model = try? jsonDecoder.decode(MoviesPlayList.self, from: response.data!)
-                self.resultsArray = model!.results
-                self.moviesTableView.reloadData()
-            }else{
-                return
-            }
-        }
+    private func decodeCurrentPageResponse(){
+        let model = try? jsonDecoder.decode(MoviesPlayList.self, from: responseData!)
+        var newResults = model!.results
+        newResults += self.resultsArray
+        self.resultsArray = newResults
+        self.moviesTableView.reloadData()
+        self.moviesTableView.pullToRefreshView.stopAnimating()
     }
-    func getMoreData(){
-        Alamofire.request(URL(string: "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page=\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-             if let self = self {
-                    let jsonDecoder = JSONDecoder()
-                    let model = try? jsonDecoder.decode(MoviesPlayList.self, from: response.data!)
-                    var newResults = model!.results
-                    newResults += self.resultsArray
-                    self.resultsArray = newResults
-                    self.moviesTableView.reloadData()
-                    self.moviesTableView.pullToRefreshView.stopAnimating()
-            }else{
-                return
-            }
-        }
-    }
+  
     
 
 
@@ -91,7 +101,7 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         cell.categoryLabel.text = resultsArray[indexPath.item].releaseDate
         cell.rateLabel.text = "\( resultsArray[indexPath.item].voteAverage)"
         let posterPath = resultsArray[indexPath.row].posterPath
-        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
+        let url = URL(string: "\(Constants.baseImageUrl)" + "\(posterPath)")
         cell.movieImageView.sd_setImage(with: url )
         self.index = indexPath.row % colorArray.count
         if indexPath.item < colorArray.count{
@@ -102,20 +112,22 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let storyboard = UIStoryboard(name: "Details", bundle: nil)
-        let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
-        scene.selectedRow = self.resultsArray[indexPath.row]
-        
+        self.selectedRow = self.resultsArray[indexPath.row]
         self.index = indexPath.row % colorArray.count
         if indexPath.item < colorArray.count{
-            scene.backgroundColor = colorArray[indexPath.row]
-//            scene.selectedRowColor = colorArray[indexPath.row]
+            self.backgroundColor = colorArray[indexPath.row]
         }else{
-            scene.backgroundColor = colorArray[index]
-//            scene.selectedRowColor = colorArray[index]
+            self.backgroundColor = colorArray[index]
         }
+        pushViewController()
+    }
+    private func pushViewController(){
+        let storyboard = UIStoryboard(name: "Details", bundle: nil)
+        let scene = storyboard.instantiateViewController(withIdentifier: "DetailsController") as! DetailsController
+        scene.selectedRow = self.selectedRow
+        scene.backgroundColor = self.backgroundColor
         navigationController?.pushViewController(scene, animated: true)
+
     }
   
  
