@@ -28,7 +28,7 @@ class DetailsController: BaseController  {
     //variables
     enum Statics{
         static let videoUrl = "https://www.youtube.com/watch?v=cjzu8pzx1Wc&t=1s&has_verified=1"
-        static let baseImageUrl = "https://image.tmdb.org/t/p/origina"
+        static let baseImageUrl = "https://image.tmdb.org/t/p/original"
 
     }
     var selectedRow:Movie? //passed array that has the selected Item
