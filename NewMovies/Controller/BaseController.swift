@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class BaseController: UIViewController {
     var hiddenNav: Bool = false
