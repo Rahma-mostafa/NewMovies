@@ -43,7 +43,8 @@ class BaseController: UIViewController {
     func back(){
         self.navigationController?.popViewController(animated: true)
     }
-    func didTapWatchNow(url: String){
+    
+    func openURL(url: String){
          let videoURL = URL(string: url)!
          let safariVC = SFSafariViewController(url: videoURL)
          self.present(safariVC, animated: true, completion: nil)

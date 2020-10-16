@@ -14,15 +14,10 @@ import SVPullToRefresh
 
 
 class AllMoviesController: UIViewController {
-
-    
-
+        
     @IBOutlet var moviesTableView: UITableView!
     //variables
-    enum Constants{
-        static let baseImageUrl = "https://image.tmdb.org/t/p/original"
-        static let baseApiUrl = "https://api.themoviedb.org/3/movie/popular?api_key=1344b54a76b1c0901f3215aef89a1139&language=en-US&page="
-    }
+    
     var resultsArray: [Movie] = []
     var newResults: [Movie] = []
     var selectedRow: Movie?
@@ -38,26 +33,26 @@ class AllMoviesController: UIViewController {
         setup()
         getData()
         addPullToRefresh()
-
-    
     }
+    
     private func setup(){
         moviesTableView.delegate = self
         moviesTableView.dataSource = self
     }
+    
     private func getData(){
-        Alamofire.request(URL(string: Constants.baseApiUrl)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-             if let self = self {
+        Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+            if let self = self {
                 self.responseData = response.data
                 self.decodeResponseData()
-             }else{
+            }else{
                 return
             }
         }
     }
     private func getMoreData(){
-        Alamofire.request(URL(string: Constants.baseApiUrl + "\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-             if let self = self {
+        Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue + "\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+            if let self = self {
                 self.responseData = response.data
                 self.decodeCurrentPageResponse()
             }else{
@@ -65,11 +60,14 @@ class AllMoviesController: UIViewController {
             }
         }
     }
+    
     private func addPullToRefresh(){
-        moviesTableView.addPullToRefresh {
+        //Closure
+        moviesTableView.addPullToRefresh {[weak self] in
+            guard let self = self else{ return }
             self.currentPage = self.currentPage + 1
             self.getMoreData()
-          }
+        }
     }
     private func decodeResponseData(){
         let model = try? jsonDecoder.decode(MoviesPlayList.self, from: self.responseData!)
@@ -84,10 +82,6 @@ class AllMoviesController: UIViewController {
         self.moviesTableView.reloadData()
         self.moviesTableView.pullToRefreshView.stopAnimating()
     }
-  
-    
-
-
 }
 extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -97,12 +91,7 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
-        cell.movieNameLabel.text = resultsArray[indexPath.item].originalTitle
-        cell.categoryLabel.text = resultsArray[indexPath.item].releaseDate
-        cell.rateLabel.text = "\( resultsArray[indexPath.item].voteAverage)"
-        let posterPath = resultsArray[indexPath.row].posterPath
-        let url = URL(string: "\(Constants.baseImageUrl)" + "\(posterPath)")
-        cell.movieImageView.sd_setImage(with: url )
+        cell.config(movie: resultsArray[indexPath.row])
         self.index = indexPath.row % colorArray.count
         if indexPath.item < colorArray.count{
             cell.roundedView.backgroundColor = colorArray[indexPath.item]
@@ -127,13 +116,7 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         scene.selectedRow = self.selectedRow
         scene.backgroundColor = self.backgroundColor
         navigationController?.pushViewController(scene, animated: true)
-
     }
-  
- 
-
- 
-    
     
     
 }

@@ -24,8 +24,15 @@ class MoviesCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
+    
+    func config(movie: Movie){
+        movieNameLabel.text = movie.originalTitle
+        categoryLabel.text = movie.releaseDate
+        rateLabel.text = "\(movie.voteAverage)"
+        let postPath = URL(string: "\(APIKey.BASE_IMAGE_URL.rawValue)\(movie.posterPath)")
+        movieImageView.sd_setImage(with: postPath!)
+    }
+    
     
 }

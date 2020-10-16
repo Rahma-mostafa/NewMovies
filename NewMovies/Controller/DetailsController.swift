@@ -26,11 +26,6 @@ class DetailsController: BaseController  {
     @IBOutlet var subview: UIView!
     @IBOutlet weak var favButton: UIButton!
     //variables
-    enum Statics{
-        static let videoUrl = "https://www.youtube.com/watch?v=cjzu8pzx1Wc&t=1s&has_verified=1"
-        static let baseImageUrl = "https://image.tmdb.org/t/p/original"
-
-    }
     var selectedRow:Movie? //passed array that has the selected Item
     var backgroundColor: UIColor?
     var favArray = [Movie]()
@@ -45,6 +40,7 @@ class DetailsController: BaseController  {
         super.viewDidLoad()
         setData()
         self.hiddenNav = true
+        
     }
 
     func setData(){
@@ -54,10 +50,10 @@ class DetailsController: BaseController  {
         self.descriptionLabel.text = selectedRow?.overview ?? ""
         self.rateLabel.text = "\(String(describing: selectedRow?.voteAverage ?? 0 ))"
         let posterPath = selectedRow?.posterPath ?? ""
-        let url = URL(string: "\(Statics.baseImageUrl)" + "\(String(describing: posterPath))")
+        let url = URL(string: "\(APIKey.BASE_IMAGE_URL.rawValue)" + "\(String(describing: posterPath))")
         self.movieImageView.sd_setImage(with: url)
         let videoImageUrl = selectedRow?.backdropPath ?? ""
-        let ImageUrl = URL(string: "\(Statics.baseImageUrl)" + "\(String(describing: videoImageUrl))")
+        let ImageUrl = URL(string: "\(APIKey.BASE_IMAGE_URL.rawValue)" + "\(String(describing: videoImageUrl))")
         self.videoImageView.sd_setImage(with: ImageUrl)
     }
 
@@ -65,7 +61,7 @@ class DetailsController: BaseController  {
         back()
     }
     @IBAction func onPlayButtonTapped(_ sender: Any) {
-        didTapWatchNow(url: Statics.videoUrl)
+        openURL(url: APIKey.VIDEO_URL.rawValue)
     }
     @IBAction func onFavouriteButtonTapped(_ sender: Any) {
         setFavButtonImage()
@@ -112,18 +108,6 @@ class DetailsController: BaseController  {
 
 
 }
-extension UIView {
-    @IBInspectable
-    var cornerRadius: CGFloat {
-        get{
-            return layer.cornerRadius
-        }
-        set{
-            layer.cornerRadius = newValue
-        }
-    }
-}
- 
 
 
 
