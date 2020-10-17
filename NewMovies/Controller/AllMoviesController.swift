@@ -14,7 +14,7 @@ import SVPullToRefresh
 
 
 class AllMoviesController: UIViewController {
-        
+    
     @IBOutlet var moviesTableView: UITableView!
     //variables
     
@@ -50,6 +50,7 @@ class AllMoviesController: UIViewController {
             }
         }
     }
+    
     private func getMoreData(){
         Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue + "\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
             if let self = self {
@@ -88,7 +89,6 @@ extension AllMoviesController: UITableViewDelegate, UITableViewDataSource{
         return resultsArray.count
         
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
         cell.config(movie: resultsArray[indexPath.row])
