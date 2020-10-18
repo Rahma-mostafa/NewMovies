@@ -7,10 +7,9 @@ target 'NewMovies' do
 
   # Pods for NewMovies
 	pod 'SDWebImage'
-	pod 'Alamofire'
+  	pod 'Alamofire'
 	pod "KRProgressHUD"
-
-
-
+	pod 'Cosmos'
+pod 'SVPullToRefresh'
 
 end

@@ -1,30 +1,38 @@
 PODS:
   - Alamofire (4.9.1)
+  - Cosmos (21.0.0)
   - KRActivityIndicatorView (3.0.5)
   - KRProgressHUD (3.4.5):
     - KRActivityIndicatorView (= 3.0.5)
   - SDWebImage (5.7.3):
     - SDWebImage/Core (= 5.7.3)
   - SDWebImage/Core (5.7.3)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - Alamofire
+  - Cosmos
   - KRProgressHUD
   - SDWebImage
+  - SVPullToRefresh
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Cosmos
     - KRActivityIndicatorView
     - KRProgressHUD
     - SDWebImage
+    - SVPullToRefresh
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
   KRActivityIndicatorView: 912bc0413d98340f384b12a4e1e6aa8f42fb377d
   KRProgressHUD: df4cdc3a1baf708d4276a089ee34d133fa9a6f3e
   SDWebImage: 97351f6582ceca541ea294ba66a1fcb342a331c2
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: 78a2763dce884230d2e4f4b80e5d4c52b96adb24
+PODFILE CHECKSUM: e9ee54c376886508595dfac4ccb1a9906af0f0af
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3
