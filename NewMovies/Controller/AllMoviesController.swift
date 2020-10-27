@@ -27,6 +27,8 @@ class AllMoviesController: UIViewController {
     var backgroundColor: UIColor?
     var responseData: Data?
     let jsonDecoder = JSONDecoder()
+    let retrieveData = RetrieveData()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +42,23 @@ class AllMoviesController: UIViewController {
         moviesTableView.dataSource = self
     }
     
+//    private func getData(){
+//        Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
+//            if let self = self {
+//                self.responseData = response.data
+//                self.decodeResponseData()
+//            }else{
+//                return
+//            }
+//        }
+//    }
     private func getData(){
-        Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue)!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
-            if let self = self {
-                self.responseData = response.data
-                self.decodeResponseData()
-            }else{
-                return
-            }
-        }
+        retrieveData.getDataFromApi(array: resultsArray)
+        print(resultsArray)
+        self.moviesTableView.reloadData()
+        print("reloaded")
     }
+
     
     private func getMoreData(){
         Alamofire.request(URL(string: APIKey.BASE_API_URL.rawValue + "\(currentPage)")!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON {[weak self] (response) in
@@ -70,11 +79,11 @@ class AllMoviesController: UIViewController {
             self.getMoreData()
         }
     }
-    private func decodeResponseData(){
-        let model = try? jsonDecoder.decode(MoviesPlayList.self, from: self.responseData!)
-        self.resultsArray = model!.results
-        self.moviesTableView.reloadData()
-    }
+//    private func decodeResponseData(){
+//        let model = try? jsonDecoder.decode(MoviesPlayList.self, from: self.responseData!)
+//        self.resultsArray = model!.results
+//        self.moviesTableView.reloadData()
+//    }
     private func decodeCurrentPageResponse(){
         let model = try? jsonDecoder.decode(MoviesPlayList.self, from: responseData!)
         var newResults = model!.results

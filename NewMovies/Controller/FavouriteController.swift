@@ -39,6 +39,8 @@ class FavouriteController: BaseController {
         let favMovies = UserDefaults.standard.data(forKey: "favMovies")
         let jsonDecoder = JSONDecoder()
         favArray = try! jsonDecoder.decode([Movie].self, from: favMovies!)
+//        let retriveFavMovies = RetrieveFavMovies()
+//        retriveFavMovies.FavMoviesSaved()
         self.moviesTableView.reloadData()
     }
     @IBAction func onBackButtobTapped(_ sender: Any) {
@@ -52,12 +54,7 @@ extension FavouriteController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("MoviesCell", owner: self, options: nil)?.first as! MoviesCell
-        let posterPath = favArray[indexPath.row].posterPath
-        let url = URL(string: "\(baseImageUrl)" + "\(posterPath)")
-        cell.movieImageView.sd_setImage(with: url )
-        cell.movieNameLabel.text = favArray[indexPath.item].originalTitle
-        cell.categoryLabel.text = favArray[indexPath.item].releaseDate
-        cell.rateLabel.text = "\(favArray[indexPath.item].voteAverage)"
+        cell.config(movie: favArray[indexPath.row])
         return cell
     }
     

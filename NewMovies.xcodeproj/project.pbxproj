@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B461E872548442D0035CCE0 /* RetrieveFavMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B461E862548442D0035CCE0 /* RetrieveFavMovies.swift */; };
+		0B4C67E3253D334E008C9FCA /* RetrieveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C67E2253D334E008C9FCA /* RetrieveData.swift */; };
 		522F504C2517BD6800102FE1 /* Bree_Serif in Resources */ = {isa = PBXBuildFile; fileRef = 522F504B2517BD6800102FE1 /* Bree_Serif */; };
 		5250FFF3251C953C003C93F7 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250FFF2251C953C003C93F7 /* BaseController.swift */; };
 		52604A6225180A7100A56C00 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52604A6125180A7100A56C00 /* GradientView.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B461E862548442D0035CCE0 /* RetrieveFavMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveFavMovies.swift; sourceTree = "<group>"; };
+		0B4C67E2253D334E008C9FCA /* RetrieveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveData.swift; sourceTree = "<group>"; };
 		0BFBE7E2252C00FC0077D844 /* ArbFONTS-Sukar Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ArbFONTS-Sukar Bold.ttf"; sourceTree = "<group>"; };
 		33FA4B6F2CA6B3CAA982992D /* Pods_NewMovies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewMovies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522F504B2517BD6800102FE1 /* Bree_Serif */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Bree_Serif; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				52604A6125180A7100A56C00 /* GradientView.swift */,
 				52EFD365251A93750005B1C3 /* MoviesPlayList.swift */,
 				94EF04092539DADD004C0B5B /* APIKey.swift */,
+				0B4C67E2253D334E008C9FCA /* RetrieveData.swift */,
+				0B461E862548442D0035CCE0 /* RetrieveFavMovies.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -303,6 +309,8 @@
 				52A97F1A2516DF44001A853A /* AllMoviesController.swift in Sources */,
 				52A97F162516DF44001A853A /* AppDelegate.swift in Sources */,
 				94EF040D2539DCC8004C0B5B /* UIView.swift in Sources */,
+				0B4C67E3253D334E008C9FCA /* RetrieveData.swift in Sources */,
+				0B461E872548442D0035CCE0 /* RetrieveFavMovies.swift in Sources */,
 				5250FFF3251C953C003C93F7 /* BaseController.swift in Sources */,
 				52604A6225180A7100A56C00 /* GradientView.swift in Sources */,
 				94EF040A2539DADD004C0B5B /* APIKey.swift in Sources */,
