@@ -55,6 +55,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="moviesTableView" destination="cQK-O6-AxB" id="j86-cG-7ra"/>
+                        <outlet property="titlename" destination="VlH-yl-Odz" id="xnx-u0-xhN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

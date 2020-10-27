@@ -17,6 +17,7 @@ class AllMoviesController: UIViewController {
     
     @IBOutlet var moviesTableView: UITableView!
     //variables
+    @IBOutlet weak var titlename: UILabel!
     
     var resultsArray: [Movie] = []
     var newResults: [Movie] = []
@@ -27,7 +28,10 @@ class AllMoviesController: UIViewController {
     var backgroundColor: UIColor?
     var responseData: Data?
     let jsonDecoder = JSONDecoder()
-    let retrieveData = RetrieveData()
+//    let retrieveData = RetrieveData()
+    private let netwokingClient = NetWorkingClient()
+
+    
 
     
     override func viewDidLoad() {
@@ -53,8 +57,30 @@ class AllMoviesController: UIViewController {
 //        }
 //    }
     private func getData(){
-        retrieveData.getDataFromApi(array: resultsArray)
-        print(resultsArray)
+//        retrieveData.getDataFromApi(array: resultsArray)
+//        print(resultsArray)
+//        netwokingClient.execute{ (json, error) in
+//            if let error = error {
+//                print(error)
+//            }else if let json = json{
+//                self.titlename.text = json.description
+//                print(json.description)
+//            }
+//        }
+        netwokingClient.getAllMovies()
+        netwokingClient.completionHandler {[weak self] (movie) in
+            guard let self = self else { return}
+            if let _movie = movie {
+            self.resultsArray = _movie
+            self.moviesTableView.reloadData()
+            print(self.resultsArray)
+            }else{
+                print("nil")
+                return
+            }
+
+        }
+
         self.moviesTableView.reloadData()
         print("reloaded")
     }
