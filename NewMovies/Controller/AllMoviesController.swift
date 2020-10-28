@@ -67,7 +67,6 @@ class AllMoviesController: UIViewController {
 //                print(json.description)
 //            }
 //        }
-        netwokingClient.getAllMovies()
         netwokingClient.completionHandler {[weak self] (movie) in
             guard let self = self else { return}
             if let _movie = movie {
@@ -80,6 +79,8 @@ class AllMoviesController: UIViewController {
             }
 
         }
+        netwokingClient.getAllMovies()
+
 
         self.moviesTableView.reloadData()
         print("reloaded")

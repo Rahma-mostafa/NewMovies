@@ -33,8 +33,10 @@ class NetWorkingClient{
                 return
             }
             do{
-                let model = try JSONDecoder().decode([Movie].self, from: data)
-                self.callBack?(model)
+                let jsonDecoder = JSONDecoder()
+                let model = try?jsonDecoder.decode(MoviesPlayList.self, from: response.data!)
+                let jsonArray = model?.results
+                self.callBack?(jsonArray)
             }catch{
                 self.callBack?(nil)
             }
