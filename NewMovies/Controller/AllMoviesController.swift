@@ -29,7 +29,7 @@ class AllMoviesController: UIViewController {
     var responseData: Data?
     let jsonDecoder = JSONDecoder()
 //    let retrieveData = RetrieveData()
-    private let netwokingClient = NetWorkingClient()
+    private let netwokingClient = GetAPIMoviesService()
 
     
 
