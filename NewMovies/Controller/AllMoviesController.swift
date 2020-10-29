@@ -29,7 +29,7 @@ class AllMoviesController: UIViewController {
     var responseData: Data?
     let jsonDecoder = JSONDecoder()
 //    let retrieveData = RetrieveData()
-    private let netwokingClient = GetAPIMoviesService()
+    private let getAPIMoviesService = GetAPIMoviesService()
 
     
 
@@ -67,23 +67,24 @@ class AllMoviesController: UIViewController {
 //                print(json.description)
 //            }
 //        }
-        netwokingClient.completionHandler {[weak self] (movie) in
-            guard let self = self else { return}
-            if let _movie = movie {
-            self.resultsArray = _movie
-            self.moviesTableView.reloadData()
-            print(self.resultsArray)
-            }else{
-                print("nil")
-                return
-            }
-
+//        netwokingClient.completionHandler {[weak self] (movie) in
+//            guard let self = self else { return}
+//            if let _movie = movie {
+//            self.resultsArray = _movie
+//            self.moviesTableView.reloadData()
+//            print(self.resultsArray)
+//            }else{
+//                print("nil")
+//                return
+//            }
+//        }
+//        netwokingClient.getAllMovies()
+        getAPIMoviesService.getAllMovies { (movie) in
+            guard let movie = movie else { return}
+                self.resultsArray = movie
+                self.moviesTableView.reloadData()
+//                print(self.resultsArray)
         }
-        netwokingClient.getAllMovies()
-
-
-        self.moviesTableView.reloadData()
-        print("reloaded")
     }
 
     
